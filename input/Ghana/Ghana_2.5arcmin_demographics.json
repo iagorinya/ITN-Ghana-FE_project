@@ -1,0 +1,200 @@
+{
+  "Defaults": {
+    "IndividualAttributes": {
+      "MigrationHeterogeneityDistribution1": 1,
+      "MigrationHeterogeneityDistribution2": 0,
+      "MigrationHeterogeneityDistributionFlag": 0,
+      "MortalityDistribution": {
+        "AxisNames": [
+          "gender",
+          "age"
+        ],
+        "AxisScaleFactors": [
+          1,
+          365
+        ],
+        "AxisUnits": [
+          "male=0,female=1",
+          "years"
+        ],
+        "NumDistributionAxes": 2,
+        "NumPopulationGroups": [
+          2,
+          1
+        ],
+        "PopulationGroups": [
+          [
+            0,
+            1
+          ],
+          [
+            0
+          ]
+        ],
+        "ResultScaleFactor": 2.74E-06,
+        "ResultUnits": "annual deaths per 1000 individuals",
+        "ResultValues": [
+          [
+            31.046999999999997
+          ],
+          [
+            31.046999999999997
+          ]
+        ]
+      },
+      "PrevalenceDistribution1": 0.13,
+      "PrevalenceDistribution2": 0.15,
+      "PrevalenceDistributionFlag": 1,
+      "RiskDistribution1": 1,
+      "RiskDistribution2": 0,
+      "RiskDistributionFlag": 0,
+      "SusceptibilityDistribution1": 1,
+      "SusceptibilityDistribution2": 0,
+      "SusceptibilityDistributionFlag": 0
+    },
+    "NodeAttributes": {
+      "AbovePoverty": 0.5,
+      "Airport": 0,
+      "Altitude": 0,
+      "BirthRateSource": "World Bank",
+      "CountryBirthRate": 31.046999999999997,
+      "Region": 1,
+      "Seaport": 0,
+      "Urban": 0,
+      "World Bank Year": "2016"
+    }
+  },
+  "Metadata": {
+    "Author": "idm",
+    "DateCreated": "2022-06-20 12:43:25.492505",
+    "IdReference": "Custom user",
+    "NodeCount": 1,
+    "Resolution": 30,
+    "Tool": "dtk-tools"
+  },
+  "Nodes": [
+    {
+      "IndividualAttributes": {
+        "AgeDistribution": {
+          "DistributionValues": [
+            [
+              0.0,
+              0.0766717728713301,
+              0.14772879760466287,
+              0.21358223023393022,
+              0.27461312000475224,
+              0.3311136440303053,
+              0.38353665980282203,
+              0.43212068524881797,
+              0.47714684160295556,
+              0.518875665062469,
+              0.55754850780847387,
+              0.59338877723847661,
+              0.62660442758439738,
+              0.65735452519111914,
+              0.68588589186621107,
+              0.71232771039667919,
+              0.73683288258001034,
+              0.75954351528410935,
+              0.78059101895707894,
+              0.80009718154182685,
+              0.81817477372888425,
+              0.8349102833094505,
+              0.85043828979625213,
+              0.8648291596341221,
+              0.87816616333835618,
+              0.89052637207555052,
+              0.90198133036960182,
+              0.91259742957711021,
+              0.92243609766441548,
+              0.93154445825720167,
+              0.93999551509038426,
+              0.94782764709408684,
+              0.95508622321113257,
+              0.961813243811028,
+              0.96804763379064906,
+              0.97382540428717834,
+              0.97918003177450419,
+              0.9841371917979993,
+              0.98873667675045007,
+              0.99299933377859839,
+              0.99694977406151386,
+              0.99999999999999944,
+              0.99999999999999944,
+              0.99999999999999944,
+              0.99999999999999944,
+              0.99999999999999944,
+              0.99999999999999944,
+              0.99999999999999944,
+              0.99999999999999944,
+              0.99999999999999944
+            ]
+          ],
+          "ResultScaleFactor": 1,
+          "ResultValues": [
+            [
+              0.0,
+              894.0,
+              1788.0,
+              2682.0,
+              3576.0,
+              4469.0,
+              5363.0,
+              6257.0,
+              7151.0,
+              8045.0,
+              8939.0,
+              9833.0,
+              10727.0,
+              11620.0,
+              12514.0,
+              13408.0,
+              14302.0,
+              15196.0,
+              16090.0,
+              16984.0,
+              17878.0,
+              18771.0,
+              19665.0,
+              20559.0,
+              21453.0,
+              22347.0,
+              23241.0,
+              24135.0,
+              25029.0,
+              25922.0,
+              26816.0,
+              27710.0,
+              28604.0,
+              29498.0,
+              30392.0,
+              31286.0,
+              32180.0,
+              33073.0,
+              33967.0,
+              34861.0,
+              35755.0,
+              36649.0,
+              37543.0,
+              38437.0,
+              39331.0,
+              40224.0,
+              41118.0,
+              42012.0,
+              42906.0,
+              43800.0
+            ]
+          ]
+        }
+      },
+      "NodeAttributes": {
+        "BirthRate": 0.11908438356164382,
+        "InitialPopulation": 1400,
+        "Latitude": 5.7607592959417682,
+        "Longitude": -0.44734151194565508,
+        "Village": "Obom"
+      },
+      "NodeID": 1
+    }
+  ]
+}
