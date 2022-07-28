@@ -1,4 +1,4 @@
-import os
+ import os
 import pandas as pd
 import json
 from dtk.tools.demographics.DemographicsGeneratorConcern import WorldBankBirthRateConcern, \
@@ -41,6 +41,7 @@ def generate_climate(demo_fname):
                           climate_project='IDM-Ghana',
                           start_year='2001', num_years='16')
     cg.generate_climate_files()
+
 
 
 if __name__ == '__main__':
