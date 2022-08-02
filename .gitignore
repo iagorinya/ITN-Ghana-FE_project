@@ -1,8 +1,14 @@
 
-experiments
+experiments/
 *.txt
 figures/
 .idea/
 *.log
 *.log
 ClimateGenerator_Log.log
+*.pyc
+*.exe
+*.png
+simulation_outputs/
+input/
+olsripts/
