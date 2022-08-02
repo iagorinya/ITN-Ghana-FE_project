@@ -3,3 +3,6 @@ experiments
 *.txt
 figures/
 .idea/
+*.log
+*.log
+ClimateGenerator_Log.log
