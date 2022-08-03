@@ -12,39 +12,28 @@ from simtools.ModBuilder import ModBuilder, ModFn
 from malaria.reports.MalariaReport import add_summary_report
 from malaria.reports.MalariaReport import add_event_counter_report, add_filtered_report
 ## Import campaign functions
-from dtk.interventions.itn import add_ITN
+#from dtk.interventions.itn import add_ITN
 from dtk.interventions.itn_age_season import add_ITN_age_season
-from dtk.interventions.irs import add_IRS
 from malaria.interventions.health_seeking import add_health_seeking
-from malaria.interventions.malaria_drug_campaigns import add_drug_campaign
-from malaria.interventions.malaria_vaccine import add_vaccine
+#from malaria.interventions.malaria_drug_campaigns import add_drug_campaign
+from simulation_helper import *
 
 # This block will be used unless overridden on the command-line
 SetupParser.default_block = 'HPC'
 sim_start_year = 2020  # for forward simulations with future intervention scenarios
 numseeds = 3
 years = 10  # 2020 to 2030
+serialize = False   ## modify as needed
+ser_time_step = None    ## modify as needed
 
 user = os.getlogin()  # user initials
 expt_name = f'{user}_FE_GHA_ITN_2020to2030_test'  # give simulation a systematic, meaningful name
 
 cb = DTKConfigBuilder.from_defaults('MALARIA_SIM', Simulation_Duration=years * 365)
+update_cb(cb, years, serialize, ser_time_step)
+set_vectors_and_habitats(cb)
 
-cb.update_params({
-    'Demographics_Filenames': [os.path.join('Ghana', 'Ghana_2.5arcmin_demographics.json')],
-    "Air_Temperature_Filename": os.path.join('Ghana', 'Ghana_30arcsec_air_temperature_daily.bin'),
-    "Land_Temperature_Filename": os.path.join('Ghana', 'Ghana_30arcsec_air_temperature_daily.bin'),
-    "Rainfall_Filename": os.path.join('Ghana', 'Ghana_30arcsec_rainfall_daily.bin'),
-    "Relative_Humidity_Filename": os.path.join('Ghana', 'Ghana_30arcsec_relative_humidity_daily.bin'),
-    "Age_Initialization_Distribution_Type": 'DISTRIBUTION_COMPLEX',
-    'Birth_Rate_Dependence': 'FIXED_BIRTH_RATE'
-})
 
-set_species(cb, ["arabiensis", "funestus", "gambiae"])
-set_larval_habitat(cb, {"arabiensis": {'TEMPORARY_RAINFALL': 7.5e9, 'CONSTANT': 1e7},
-                        "funestus": {'WATER_VEGETATION': 4e8},
-                        "gambiae": {'TEMPORARY_RAINFALL': 8.3e8, 'CONSTANT': 1e7}
-                        })
 
 """ADDITIONAL CAMPAIGNS"""
 
@@ -164,19 +153,6 @@ def add_itn_antenatal_by_row(cb, row):
                             birth_triggered=True)
 
 
-def add_itn_pregnant_by_row(cb, row):
-    itn_preg_max_months = 48
-    itn_leak_factor = 0.9
-    for mm in range(itn_preg_max_months):
-        ITN_age_season_template(cb, start=30 * mm,
-                                demographic_coverage=row['coverage'],
-                                killing_rate=row['kill_rate'],
-                                blocking_rate=row['blocking_rate'],
-                                age_bin=[0, 5],
-                                usages=[itn_leak_factor for i in range(2)],
-                                ind_property_restrictions=[{'AgeGroup': '15to30'}])
-
-
 """REGULAR ITN MASS CAMPAIGNS"""
 
 
@@ -201,9 +177,7 @@ def add_ds_itns_addtnl(cb, itn_addtnl_df, my_ds):
         itn_type = row['type']
         if 'blocking_rate' not in row.index:
             row['blocking_rate'] = row['block_initial']
-        if itn_type == 'pregnant':
-            add_itn_pregnant_by_row(cb, row)
-        elif itn_type == 'antenatal':
+        if itn_type == 'antenatal':
             add_itn_antenatal_by_row(cb, row)
         else:
             raise ValueError('Specify itn_type, allowed values are pregnant or antenatal')
@@ -250,7 +224,8 @@ itn_anc_df = pd.read_csv(os.path.join(inputs_path,'itn_anc_scenario1_example_202
 
 
 """BUILDER"""
-builder = ModBuilder.from_list([[ModFn(add_ds_hs, cm_df, my_ds),
+builder = ModBuilder.from_list([[ModFn(set_input_files,my_ds),
+                                 ModFn(add_ds_hs, cm_df, my_ds),
                                  ModFn(add_ds_itns, itn_df, my_ds, itn_cov_sweep),  # if itn_cov_sweep is not provided, default setting specific values are used
                                  ModFn(add_ds_itns_addtnl, itn_anc_df, my_ds),
                                  # Run pick-up from each unique burn-in scenario
