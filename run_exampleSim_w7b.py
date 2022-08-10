@@ -19,7 +19,7 @@ pickup_years = 10
 sim_start_year = 1980
 pull_year = 50
 
-burnin_id = '593bc01d-1118-ed11-a9fb-b88303911bc1'
+burnin_id = '5626a569-d518-ed11-a9fb-b88303911bc1'
 #burnin_id = '2022_08_06_21_08_47_004533'
 serialize_year=50
 
