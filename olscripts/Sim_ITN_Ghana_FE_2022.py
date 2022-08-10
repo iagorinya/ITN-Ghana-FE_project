@@ -13,7 +13,7 @@ from malaria.reports.MalariaReport import add_event_counter_report
 from malaria.interventions.health_seeking import add_health_seeking
 from malaria.interventions.malaria_drug_campaigns import add_drug_campaign
 from dtk.interventions.itn import add_ITN
-from Solution_scripts.run_exampleSim_w3b import itn_intervention, irs_intervention
+# from Solution_scripts.run_exampleSim_w3b import itn_intervention, irs_intervention
 
 SetupParser.default_block = 'HPC'
 numseeds = 3

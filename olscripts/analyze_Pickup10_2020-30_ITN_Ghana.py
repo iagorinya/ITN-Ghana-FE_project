@@ -12,8 +12,9 @@ import matplotlib.dates as mdates
 SetupParser.default_block = 'HPC'
 
 user = os.getlogin()  # user initials
-expt_name = f'{user}_test3'
-expt_id = '1911ea7d-dc0d-ed11-a9fa-b88303911bc1'  ## change expt_id
+# expt_name = f'{user}_test3'
+expt_name = f'{user}_FE_2022_pickup10'
+expt_id = '1816af8e-9015-ed11-a9fb-b88303911bc1'  ## change expt_id
 working_dir = os.path.join('simulation_outputs')
 
 
@@ -100,16 +101,16 @@ def plot_events(event_list, sweep_variables) :
         ax.xaxis.set_major_locator(mdates.MonthLocator(interval=12))
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
 
-        # coverage_channel = '%s_Coverage' % channel[9:]
-        # if coverage_channel not in df.columns.values :
-        #     continue
-        # ax = axes[ch*2+1]
-        # for p, pdf in df.groupby(sweep_variables):
-        #     ax.plot(pdf['date'], pdf[coverage_channel], '-', linewidth=0.8, label=p)
-        # ax.set_title(coverage_channel)
-        # ax.set_ylabel(coverage_channel)
-        # ax.xaxis.set_major_locator(mdates.MonthLocator(interval=12))
-        # ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+        coverage_channel = '%s_Coverage' % channel[9:]
+        if coverage_channel not in df.columns.values :
+            continue
+        ax = axes[ch*2+1]
+        for p, pdf in df.groupby(sweep_variables):
+            ax.plot(pdf['date'], pdf[coverage_channel], '-', linewidth=0.8, label=p)
+        ax.set_title(coverage_channel)
+        ax.set_ylabel(coverage_channel)
+        ax.xaxis.set_major_locator(mdates.MonthLocator(interval=12))
+        ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
 
     axes[-1].legend(title=sweep_variables)
     fig3.savefig(os.path.join(working_dir, expt_name, 'Events.png'))
@@ -124,24 +125,24 @@ if __name__ == "__main__":
     event_list = event_list + ['Bednet_Got_New_One', 'Bednet_Using', 'Bednet_Discarded']
     channels_inset_chart = ['Statistical Population', 'New Clinical Cases', 'Adult Vectors', 'Infected']
 
-    # analyzers = [InsetChartAnalyzer(expt_name=expt_name,
-    #                                 working_dir=working_dir,
-    #                                 channels=channels_inset_chart,
-    #                                 sweep_variables=sweep_variables),
-    #              MonthlyPfPRAnalyzerU5(expt_name=expt_name,
-    #                                       working_dir=working_dir,
-    #                                       start_year=2020,
-    #                                       sweep_variables=sweep_variables),
-    #              ReceivedCampaignAnalyzer(expt_name=expt_name,
-    #                                       working_dir=working_dir,
-    #                                       channels=event_list,
-    #                                       start_year=2020,
-    #                                       sweep_variables=sweep_variables),
-    #              ]
-    #
-    # am = AnalyzeManager(expt_id, analyzers=analyzers)
-    # am.analyze()
-    #
+    analyzers = [InsetChartAnalyzer(expt_name=expt_name,
+                                    working_dir=working_dir,
+                                    channels=channels_inset_chart,
+                                    sweep_variables=sweep_variables),
+                 MonthlyPfPRAnalyzerU5(expt_name=expt_name,
+                                          working_dir=working_dir,
+                                          start_year=2020,
+                                          sweep_variables=sweep_variables),
+                 ReceivedCampaignAnalyzer(expt_name=expt_name,
+                                          working_dir=working_dir,
+                                          channels=event_list,
+                                          start_year=2020,
+                                          sweep_variables=sweep_variables),
+                 ]
+
+    am = AnalyzeManager(expt_id, analyzers=analyzers)
+    am.analyze()
+
     sweep_vars_for_plotting = [x for x in sweep_variables if x != 'Run_Number']
     plot_inset_chart(channels_inset_chart, sweep_vars_for_plotting)
     plot_summary_report(sweep_vars_for_plotting)

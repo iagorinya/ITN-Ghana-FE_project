@@ -30,14 +30,14 @@ class InsetChartAnalyzer(BaseAnalyzer):
         simdata = pd.DataFrame({x: data[self.filenames[0]]['Channels'][x]['Data'] for x in self.inset_channels})
         simdata['Time'] = simdata.index
         simdata['Day'] = simdata['Time'] % 365
-        simdata['Year'] = simdata['Time'].apply(lambda x: int(x / 365) + self.start_year)
+        simdata['Year'] = simdata['Time'].apply(lambda x: int(x / 365) + 2022)
         simdata['date'] = simdata.apply(
-            lambda x: datetime.date(int(x['Year']), 1, 1) + datetime.timedelta(int(x['Day']) - 1), axis=1)
+            lambda x: datetime.date(int(x['Year']), 1, 1) + datetime.timedelta(x['Day'] - 1), axis=1)
 
         for sweep_var in self.sweep_variables:
             if sweep_var in simulation.tags.keys():
                 simdata[sweep_var] = simulation.tags[sweep_var]
-            elif sweep_var == 'Run_Number':
+            elif sweep_var == 'Run_Number' :
                 simdata[sweep_var] = 0
         return simdata
 
@@ -58,7 +58,6 @@ class InsetChartAnalyzer(BaseAnalyzer):
 """
 MalariaSummaryReport Analyzer
 """
-
 
 ### PER AGEBIN
 # AnnualAgebinPfPRAnalyzer
@@ -109,7 +108,7 @@ class AnnualAgebinPfPRAnalyzer(BaseAnalyzer):
                     adf[sweep_var] = simulation.tags[sweep_var]
                 except:
                     adf[sweep_var] = '-'.join([str(x) for x in simulation.tags[sweep_var]])
-            elif sweep_var == 'Run_Number':
+            elif sweep_var == 'Run_Number' :
                 adf[sweep_var] = 0
 
         return adf
@@ -131,8 +130,7 @@ class AnnualAgebinPfPRAnalyzer(BaseAnalyzer):
         if self.burnin is not None:
             adf = adf[adf['year'] >= self.start_year + self.burnin]
         adf = adf.loc[adf['agebin'] <= 100]
-        adf.to_csv(os.path.join(self.working_dir, self.expt_name, 'Agebin_PfPR_ClinicalIncidence_annual.csv'),
-                   index=False)
+        adf.to_csv(os.path.join(self.working_dir, self.expt_name, 'Agebin_PfPR_ClinicalIncidence_annual.csv'), index=False)
 
 
 # MonthlyAgebinPfPRAnalyzer
@@ -208,7 +206,7 @@ class MonthlyAgebinPfPRAnalyzer(BaseAnalyzer):
                     adf[sweep_var] = simulation.tags[sweep_var]
                 except:
                     adf[sweep_var] = '-'.join([str(x) for x in simulation.tags[sweep_var]])
-            elif sweep_var == 'Run_Number':
+            elif sweep_var == 'Run_Number' :
                 adf[sweep_var] = 0
 
         return adf
@@ -291,7 +289,7 @@ class MonthlyPfPRAnalyzerU5(BaseAnalyzer):
                     adf[sweep_var] = simulation.tags[sweep_var]
                 except:
                     adf[sweep_var] = '-'.join([str(x) for x in simulation.tags[sweep_var]])
-            elif sweep_var == 'Run_Number':
+            elif sweep_var == 'Run_Number' :
                 adf[sweep_var] = 0
 
         return adf
@@ -364,7 +362,7 @@ class MonthlyPfPRAnalyzerU10(BaseAnalyzer):
                     adf[sweep_var] = simulation.tags[sweep_var]
                 except:
                     adf[sweep_var] = '-'.join([str(x) for x in simulation.tags[sweep_var]])
-            elif sweep_var == 'Run_Number':
+            elif sweep_var == 'Run_Number' :
                 adf[sweep_var] = 0
 
         return adf
@@ -443,7 +441,7 @@ class WeeklyPfPRAnalyzerU5(BaseAnalyzer):
                     adf[sweep_var] = simulation.tags[sweep_var]
                 except:
                     adf[sweep_var] = '-'.join([str(x) for x in simulation.tags[sweep_var]])
-            elif sweep_var == 'Run_Number':
+            elif sweep_var == 'Run_Number' :
                 adf[sweep_var] = 0
 
         return adf
@@ -752,9 +750,8 @@ class ReceivedCampaignAnalyzer(BaseAnalyzer):
         simdata['Population'] = data[self.filenames[1]]['Channels']['Statistical Population']['Data']
         simdata['Time'] = simdata.index
         simdata['Day'] = simdata['Time'] % 365
-        simdata['Year'] = simdata['Time'].apply(lambda x: int(x / 365) + 2022)
-        simdata['date'] = simdata.apply(
-            lambda x: datetime.date(int(x['Year']), 1, 1) + datetime.timedelta(int(x['Day']) - 1), axis=1)
+        simdata['Month'] = simdata['Day'].apply(lambda x: self.monthparser((x + 1) % 365))
+        simdata['Year'] = simdata['Time'].apply(lambda x: int(x / 365) + self.start_year)
 
         for sweep_var in self.sweep_variables:
             if sweep_var in simulation.tags.keys():
@@ -774,6 +771,7 @@ class ReceivedCampaignAnalyzer(BaseAnalyzer):
             return
 
         adf = pd.concat(selected).reset_index(drop=True)
+        adf['date'] = adf.apply(lambda x: datetime.date(int(x['Year']), int(x['Month']), 1), axis=1)
 
         if not os.path.exists(os.path.join(self.working_dir, self.expt_name)):
             os.mkdir(os.path.join(self.working_dir, self.expt_name))
@@ -1197,10 +1195,10 @@ class MonthlyPfPRAnalyzerU5IP(BaseAnalyzer):
                  burnin=None, filter_exists=False, ipfilter=''):
 
         super(MonthlyPfPRAnalyzerU5IP, self).__init__(working_dir=working_dir,
-                                                      filenames=[
-                                                          f"output/MalariaSummaryReport_Monthly_U5{ipfilter}_{x}.json"
-                                                          for x in range(start_year, end_year)]
-                                                      )
+                                                    filenames=[
+                                                        f"output/MalariaSummaryReport_Monthly_U5{ipfilter}_{x}.json"
+                                                        for x in range(start_year, end_year)]
+                                                    )
         self.sweep_variables = sweep_variables or ["Run_Number"]
         self.expt_name = expt_name
         self.start_year = start_year
@@ -1268,8 +1266,7 @@ class MonthlyPfPRAnalyzerU5IP(BaseAnalyzer):
         adf = pd.concat(selected).reset_index(drop=True)
         if self.burnin is not None:
             adf = adf[adf['year'] > self.start_year + self.burnin]
-        adf.to_csv((os.path.join(self.working_dir, self.expt_name, f'U5{self.ipfilter}_PfPR_ClinicalIncidence.csv')),
-                   index=False)
+        adf.to_csv((os.path.join(self.working_dir, self.expt_name, f'U5{self.ipfilter}_PfPR_ClinicalIncidence.csv')), index=False)
 
 
 class MonthlyAgebinPfPRAnalyzerIP(BaseAnalyzer):
