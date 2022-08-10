@@ -1,0 +1,19 @@
+{
+   "WorkItem_Type": "InputDataWorker",
+   "Project": "IDM-Ghana",
+   "Region": "",
+   "IncludeNonPop": true,
+   "Resolution": "0",
+   "Parameters": [
+      "tmean",
+      "humid",
+      "rain"
+   ],
+   "StartYear": "2001",
+   "NumYears": "16",
+   "NaNCheck": true,
+   "Migration": false,
+   "IdReference": "Custom user",
+   "Mode": "upload",
+   "ProjectRoot": "v2017"
+}
