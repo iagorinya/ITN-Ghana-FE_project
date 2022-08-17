@@ -47,9 +47,9 @@ if __name__ == '__main__':
     if not os.path.exists(inputs_path):
         os.mkdir(inputs_path)
 
-    df = pd.DataFrame(data={'nodeid': [1], 'population': [1400], 'Village': ['Navrongo'],
+    df = pd.DataFrame(data={'nodeid': [1], 'population': [2000], 'Ecozone': ['Savannah'],
                             'lat': [5.760759295941768], 'lon': [-0.4473415119456551]})
 
-    demo_fname = os.path.join(inputs_path, 'Ghana_demographics.json')
+    demo_fname = os.path.join(inputs_path, 'Ghana_demographics_Zone_1.json')
     generate_demographics(df, demo_fname)
     generate_climate(demo_fname)

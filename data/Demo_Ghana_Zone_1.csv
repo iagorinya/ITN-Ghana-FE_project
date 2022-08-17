@@ -1,4 +1,2 @@
-year,month,DHS_n,DHS_pos
-2014,8,100,29.8
-2016,7,100,20.5
-2019,10,100,11.1
+nodeid,population,Village,lat,lon
+1,2000,Savanna,,
