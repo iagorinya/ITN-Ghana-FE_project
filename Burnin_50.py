@@ -7,11 +7,12 @@ from simtools.SetupParser import SetupParser
 from simtools.ModBuilder import ModBuilder, ModFn
 from dtk.interventions.outbreakindividual import recurring_outbreak
 from malaria.reports.MalariaReport import add_summary_report
+
 ## Import custom reporters
 
 SetupParser.default_block = 'HPC'
 numseeds = 5
-sim_start_year = 1980
+sim_start_year = 1961
 serialize_years = 50
 
 cb = DTKConfigBuilder.from_defaults('MALARIA_SIM', Simulation_Duration=serialize_years * 365)
@@ -42,19 +43,18 @@ set_larval_habitat(cb, {"arabiensis": {'TEMPORARY_RAINFALL': 7.5e9, 'CONSTANT': 
                         })
 
 
-def update_cb(cb, years, serialize, ser_time_step = None):
-
-   # Demographics
+def update_cb(cb, years, serialize, ser_time_step=None):
+    # Demographics
     cb.update_params({
         "Birth_Rate_Dependence": "FIXED_BIRTH_RATE",
         "Age_Initialization_Distribution_Type": 'DISTRIBUTION_COMPLEX',
-        'Disable_IP_Whitelist' : 1,
+        'Disable_IP_Whitelist': 1,
         'x_Base_Population': 1,
         'x_Birth': 1
     })
 
     # Report
-    cb.update_params( {
+    cb.update_params({
         'Enable_Default_Reporting': 0,
         'Enable_Demographics_Risk': 1,
         'Enable_Property_Output': 0,
@@ -68,17 +68,16 @@ def update_cb(cb, years, serialize, ser_time_step = None):
 
 
 recurring_outbreak(cb, start_day=180, repetitions=serialize_years)
-add_summary_report(cb, age_bins=[5, 100], start=365*(serialize_years-1), interval=365)
+add_summary_report(cb, age_bins=[5, 100], start=365 * serialize_years, interval=365)
 
 # run_sim_args is what the `dtk run` command will look for
 user = os.getlogin()  # user initials
-expt_name = f'{user}_FE_2022_w7a_burnin{serialize_years}'
-
+expt_name = f'{user}_FE_2022_burnin_ITN_calibration_3{serialize_years}'
 
 """BUILDER"""
 builder = ModBuilder.from_list([[ModFn(DTKConfigBuilder.set_param, 'Run_Number', x),
                                  ModFn(DTKConfigBuilder.set_param, 'x_Temporary_Larval_Habitat', hab_scale)]
-                                for hab_scale in np.logspace(-2, np.log10(30), 7)
+                                for hab_scale in np.logspace(-2, np.log10(30), 50)
                                 for x in range(numseeds)
                                 ])
 

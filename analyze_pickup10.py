@@ -7,28 +7,25 @@ from analyzer_collection import *
 SetupParser.default_block = 'HPC'
 
 user = os.getlogin()  # user initials
-# expt_name = f'{user}_FE_2022_example_w7b'
-# expt_id = 'c9eccdcd-b711-ed11-a9fb-b88303911bc1'  ## change expt_id
-# working_dir = os.path.join('simulation_outputs')
-expt_name = f'{user}_FE_2022_w7pick_up50'  ## change w6a or w6b
-expt_id = '22298e88-2018-ed11-a9fb-b88303911bc1'  ## change expt_id
+#expt_name = f'{user}_FE_2022_example_w7'
+#expt_name = f'{user}_FE_2022_pick_up10'
+expt_name = f'{user}_FE_2022_pickup_ITN_calibration_350'
+expt_id = '3cbb45c8-a51d-ed11-a9fb-b88303911bc1'  ## change expt_id
 working_dir = os.path.join('simulation_outputs')
-
-serialize_years = 50  # Same as in run_exampleSim_w6a.py
-step = 'pickup'  # 'pi
-
 
 if __name__ == "__main__":
     SetupParser.init()
 
-    sweep_variables = ['itn_coverage', 'Run_Number']
+    #sweep_variables = ['itn_coverage', 'Run_Number']
+    sweep_variables = ['Run_Number', 'itn_coverage', 'x_Temporary_Larval_Habitat', 'cm_cov_U5',
+                       'cm_cov_adults']
 
     # analyzers to run
     analyzers = [
         MonthlyPfPRAnalyzerU5(expt_name=expt_name,
                               working_dir=working_dir,
-                              start_year=2020,
-                              end_year=2030,
+                              start_year=2010,
+                              end_year=2020,
                               sweep_variables=sweep_variables),
     ]
     am = AnalyzeManager(expt_id, analyzers=analyzers)
