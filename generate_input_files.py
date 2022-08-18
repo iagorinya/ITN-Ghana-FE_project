@@ -24,7 +24,7 @@ def generate_demographics(demo_df, demo_fname):
                                                    node_id_from_lat_long=False,
                                                    concerns=chain,
                                                    load_other_columns_as_attributes=True,
-                                                   include_columns=['Village'])  # Add any "optional" columns
+                                                   include_columns=['Ecozone', 'rank'])  # Add any "optional" columns
 
     with open(demo_fname, 'w') as fout:
         json.dump(current, fout, sort_keys=True, indent=4, separators=(',', ': '))
@@ -48,7 +48,7 @@ if __name__ == '__main__':
         os.mkdir(inputs_path)
 
     df = pd.DataFrame(data={'nodeid': [1], 'population': [2000], 'Ecozone': ['Savannah'],
-                            'lat': [5.760759295941768], 'lon': [-0.4473415119456551]})
+                            'lat': [9.407840], 'lon': [-0.842240]})
 
     demo_fname = os.path.join(inputs_path, 'Ghana_demographics_Zone_1.json')
     generate_demographics(df, demo_fname)

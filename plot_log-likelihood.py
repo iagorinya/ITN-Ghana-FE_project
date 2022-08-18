@@ -11,7 +11,7 @@ from calibtool.LL_calculators import beta_binomial
 user = os.getlogin()  # user initials
 # expt_name = f'{user}_FE_2022_example_w7'
 # expt_name = f'{user}_FE_2022_pick_up10'
-expt_name = f'{user}_FE_2022_pickup_ITN_calibration_350'
+expt_name = f'{user}_FE_2022_pickup_ITN_calibration_4_50'
 output_dir = os.path.join('simulation_outputs')
 input_dir = os.path.join('input')
 data_dir = os.path.join('data')
@@ -20,7 +20,7 @@ sim_pfpr_df = pd.read_csv(os.path.join(output_dir, expt_name, 'U5_PfPR_ClinicalI
 sim_pfpr_df.columns = [col.replace(' U5', '') for col in sim_pfpr_df.columns]
 sim_pfpr_df['npos'] = sim_pfpr_df['PfPR'] * sim_pfpr_df['Pop']
 sim_pfpr_df['npos'] = sim_pfpr_df.npos.round(0)
-dhs_pfpr_df = pd.read_csv(os.path.join(data_dir, 'PfPr_DHS_Ghana_Zone_3.csv'))
+dhs_pfpr_df = pd.read_csv(os.path.join(data_dir, 'PfPr_DHS_Ghana_Zone_2.csv'))
 sweep_variables = ['x_Temporary_Larval_Habitat', 'Run_Number']
 
 

@@ -14,12 +14,12 @@ import numpy as np
 from malaria.interventions.health_seeking import add_health_seeking
 
 SetupParser.default_block = 'HPC'
-numseeds = 5
+numseeds = 2
 pickup_years = 11
 sim_start_year = 2010
 pull_year = 50
 
-burnin_id = '7206747a-991d-ed11-a9fb-b88303911bc1'
+burnin_id = '8ea49fc8-9b1e-ed11-a9fb-b88303911bc1'
 # burnin_id = '2022_08_06_21_08_47_004533'
 serialize_year = 50
 
@@ -39,8 +39,8 @@ cb.update_params({
     "Relative_Humidity_Filename": os.path.join('Ghana', 'Ghana_30arcsec_relative_humidity_daily.bin'),
     "Age_Initialization_Distribution_Type": 'DISTRIBUTION_COMPLEX',
     'x_Base_Population': 1,
-    'x_Birth': 1,
-    'x_Temporary_Larval_Habitat': 2
+    'x_Birth': 1
+    # 'x_Temporary_Larval_Habitat': 1
 
 })
 
@@ -139,10 +139,10 @@ add_event_counter_report(cb, event_trigger_list=event_list, start=0, duration=10
 
 # run_sim_args is what the `dtk run` command will look for
 user = os.getlogin()  # user initials
-expt_name = f'{user}_FE_2022_pickup_ITN_calibration_3{serialize_year}'
+expt_name = f'{user}_FE_2022_pickup_ITN_calibration_4_{serialize_year}'
 
 """BUILDER"""
-builder = ModBuilder.from_list([[ModFn(case_management),
+builder = ModBuilder.from_list([[ModFn(case_management, cm_cov_U5),
                                  ModFn(itn_intervention, coverage_level=itn_cov),
                                  ModFn(DTKConfigBuilder.set_param, 'Run_Number', x),
                                  ModFn(DTKConfigBuilder.set_param, 'Serialized_Population_Path',
@@ -150,8 +150,9 @@ builder = ModBuilder.from_list([[ModFn(case_management),
                                  ModFn(DTKConfigBuilder.set_param, 'x_Temporary_Larval_Habitat',
                                        row['x_Temporary_Larval_Habitat']),
                                  ]
-                                for itn_cov in [0.56]
-                                #for hab_scale in np.logspace(-2, np.log10(30), 50)
+                                for itn_cov in [0.69]
+                                for cm_cov_U5 in [0.5]
+                                # for hab_scale in np.logspace(-2, np.log10(30), 50)
                                 for x in range(numseeds)
                                 for r, row in ser_df.iterrows()
                                 ])

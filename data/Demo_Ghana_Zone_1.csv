@@ -1,2 +1,4 @@
-nodeid,population,Village,lat,lon
-1,2000,Savanna,,
+nodeid,population,Village,lat,lon,rank
+1,2000,Savanna,9.40784,-0.84224,3
+2,2500,Transitional forest,6.6666,-1.616271,1
+3,3000,Coastal,5.603717,-0.186964,2
