@@ -72,12 +72,12 @@ add_summary_report(cb, age_bins=[5, 100], start=365 * serialize_years, interval=
 
 # run_sim_args is what the `dtk run` command will look for
 user = os.getlogin()  # user initials
-expt_name = f'{user}_FE_2022_burnin_ITN_calibration_4_{serialize_years}'
+expt_name = f'{user}_FE_2022_burnin_ITN_calibration_5_{serialize_years}'
 
 """BUILDER"""
 builder = ModBuilder.from_list([[ModFn(DTKConfigBuilder.set_param, 'Run_Number', x),
                                  ModFn(DTKConfigBuilder.set_param, 'x_Temporary_Larval_Habitat', hab_scale)]
-                                for hab_scale in np.logspace(-2, np.log10(20), 50)
+                                for hab_scale in np.logspace(-2, np.log10(30), 50)
                                 for x in range(numseeds)
                                 ])
 

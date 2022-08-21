@@ -1,28 +1,28 @@
-import os
+import numpy as np
+from dtk.interventions.irs import add_IRS
+from dtk.interventions.itn_age_season import add_ITN_age_season
 from dtk.utils.core.DTKConfigBuilder import DTKConfigBuilder
+import os
 from dtk.vector.species import set_species, set_larval_habitat
 from simtools.ExperimentManager.ExperimentManagerFactory import ExperimentManagerFactory
 from simtools.SetupParser import SetupParser
 from simtools.ModBuilder import ModBuilder, ModFn
-from dtk.interventions.itn import add_ITN
+
 ## Import custom reporters
 from malaria.reports.MalariaReport import add_summary_report, add_filtered_report
 from malaria.reports.MalariaReport import add_event_counter_report
 from simtools.Utilities.Experiments import retrieve_experiment
 from dtk.interventions.outbreakindividual import recurring_outbreak
 import pandas as pd
-import numpy as np
 from malaria.interventions.health_seeking import add_health_seeking
-from dtk.interventions.irs import add_IRS
 
 SetupParser.default_block = 'HPC'
 numseeds = 3
 pickup_years = 10
-sim_start_year = 2010
+sim_start_year = 2020
 pull_year = 50
 
 burnin_id = '8ea49fc8-9b1e-ed11-a9fb-b88303911bc1'
-# burnin_id = '2022_08_06_21_08_47_004533'
 serialize_year = 50
 
 SetupParser.init()
@@ -73,7 +73,9 @@ def case_management(cb, cm_cov_U5=0.2, cm_cov_adults=0.1):
                                  'agemin': 0, 'agemax': 5, 'seek': 1, 'rate': 0.3},
                                 {'trigger': 'NewClinicalCase', 'coverage': 0.3,
                                  'agemin': 5, 'agemax': 100, 'seek': 1, 'rate': 0.3}],
-                       drug=['Artemether', 'Lumefantrine'])
+                       drug=['Artemether', 'Lumefantrine'],
+                       broadcast_event_name='Received_Treatment'
+                       )
     # Severe cases
     add_health_seeking(cb, start_day=0,
                        targets=[{'trigger': 'NewSevereCase', 'coverage': 0.49,
@@ -87,21 +89,34 @@ def case_management(cb, cm_cov_U5=0.2, cm_cov_adults=0.1):
 event_list = event_list + ['Received_Treatment', 'Received_Severe_Treatment']
 
 
-# Add intervention
-def itn_intervention(cb, coverage_level=0.2):
-    add_ITN(cb,
-            start=366,  # starts on first day of second year
-            coverage_by_ages=[
-                {"coverage": coverage_level, "min": 0, "max": 5},  # Highest coverage for 0-10 years old
-                {"coverage": coverage_level * 0.75, "min": 5, "max": 100},
-            ],
-            repetitions=3,  # ITN will be distributed 5 times
-            tsteps_btwn_repetitions=365 * 3  # three years between ITN distributions
-            )
-    return {'itn_coverage': coverage_level}
+def itn_intervention(cb, ITN):
+    seasonal_times = [0.0, 20.0, 21.0, 30.0, 31.0, 365.0]
+    seasonal_values = [1.0, 1.0, 0.5, 0.5, 1.0, 1.0]
+    # for i, j in zip(seasonal_times, seasonal_values, ):
+    add_ITN_age_season(cb,
+                       start=365,
+                       demographic_coverage=0.9,
+                       killing_config={
+                           "Initial_Effect": 0.6,
+                           "Decay_Time_Constant": 1460,
+                           "class": "WaningEffectExponential"},
+                       blocking_config={
+                           "Initial_Effect": 0.9,
+                           "Decay_Time_Constant": 730,
+                           "class": "WaningEffectExponential"},
+                       discard_times={
+                           "Expiration_Period_Distribution": "DUAL_EXPONENTIAL_DISTRIBUTION",
+                           "Expiration_Period_Proportion_1": 0.9,
+                           "Expiration_Period_Mean_1": 365 * 1.5,
+                           "Expiration_Period_Mean_2": 3650},
+                       age_dependence={'Times': [0, 5, 18],
+                                       'Values': [1, 0.7, 0.2]},
+                       seasonal_dependence={"Times": seasonal_times, "Values": seasonal_values},
+                       )
+    return {'seasonal_itn': ITN}
 
 
-event_list = event_list + ['Received_ITN']
+event_list = event_list + ['Bednet_Got_New_One', 'Bednet_Using', 'Bednet_Discarded']
 
 
 # IRS intervention is only added for the Savannah Ecological zone starting 2014 (Onces a year at one year interval)
@@ -127,14 +142,14 @@ event_list = event_list + ['Received_IRS']
 add_filtered_report(cb, start=0, end=pickup_years * 365)
 # Summary report per agebin
 add_summary_report(cb, start=366, interval=365,
-                   age_bins=[0.25, 5, 100],
+                   age_bins=[0, 125],
                    description='U5_PfPR')
 
 for year in range(pickup_years):
     start_day = 0 + 365 * year
     sim_year = sim_start_year + year
     add_summary_report(cb, start=start_day, interval=30,
-                       age_bins=[0.25, 5, 100],
+                       age_bins=[0, 125],
                        description=f'Monthly_U5_{sim_year}')
 
 # Enable reporters
@@ -146,30 +161,21 @@ cb.update_params({
     'Custom_Individual_Events': event_list
 })
 # Event_counter_report
-add_event_counter_report(cb, event_trigger_list=event_list, start=0, duration=10000)
-
+# add_event_counter_report(cb, event_trigger_list=event_list, start=0, duration=10000)
 recurring_outbreak(cb, start_day=180, repetitions=pickup_years)
+
 # run_sim_args is what the `dtk run` command will look for
 user = os.getlogin()  # user initials
 expt_name = f'{user}_FE_2022_pickup_ITN_calibration_3_{serialize_year}'
 
 """BUILDER"""
 builder = ModBuilder.from_list([[ModFn(case_management),
-                                 ModFn(itn_intervention),
-                                 ModFn(irs_intervention,  IR=0.06),
+                                 ModFn(itn_intervention, ITN=0),
+                                 # ModFn(add_ITN_age_season),
                                  ModFn(DTKConfigBuilder.set_param, 'Serialized_Population_Path',
                                        os.path.join(row['outpath'], 'output')),
-                                 #ModFn(DTKConfigBuilder.set_param, 'Serialized_Population_Path',
-                                 #      os.path.join(ser_df[ser_df.Run_Number == seed].outpath.iloc[0], 'output')),
                                  ModFn(DTKConfigBuilder.set_param, 'Run_Number', seed),
-                                 ModFn(DTKConfigBuilder.set_param, 'x_Temporary_Larval_Habitat',
-                                       row['x_Temporary_Larval_Habitat']),
                                  ]
-                                # for itn_cov in [0.3]
-                                # for cm_cov_U5 in [0.2]
-                                # for cm_cov_adults in [0.1]
-                                # for ke in [0.06]
-                                # for hab_scale in np.logspace(-2, np.log10(20), 50)
                                 for seed in range(numseeds)
                                 for r, row in ser_df.iterrows()
                                 ])

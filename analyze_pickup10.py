@@ -7,18 +7,17 @@ from analyzer_collection import *
 SetupParser.default_block = 'HPC'
 
 user = os.getlogin()  # user initials
-#expt_name = f'{user}_FE_2022_example_w7'
-#expt_name = f'{user}_FE_2022_pick_up10'
-expt_name = f'{user}_FE_2022_pickup_ITN_calibration_4_50'
-expt_id = 'd06d02c0-711e-ed11-a9fb-b88303911bc1'  ## change expt_id
+
+expt_name = f'{user}_FE_2022_pickup_ITN_calibration_3_50'
+expt_id = 'c45d561e-371f-ed11-a9fb-b88303911bc1'  ## change expt_id
 working_dir = os.path.join('simulation_outputs')
 
 if __name__ == "__main__":
     SetupParser.init()
 
-    #sweep_variables = ['itn_coverage', 'Run_Number']
+    # sweep_variables = ['itn_coverage', 'Run_Number']
     sweep_variables = ['Run_Number', 'itn_coverage', 'x_Temporary_Larval_Habitat', 'cm_cov_U5',
-                       'cm_cov_adults']
+                       'cm_cov_adults', 'irs_coverage']
 
     # analyzers to run
     analyzers = [
