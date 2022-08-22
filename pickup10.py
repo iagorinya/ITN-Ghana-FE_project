@@ -21,7 +21,7 @@ pickup_years = 10
 sim_start_year = 2010
 pull_year = 50
 
-burnin_id = '8ea49fc8-9b1e-ed11-a9fb-b88303911bc1'
+burnin_id = '5b13fe33-7d21-ed11-a9fb-b88303911bc1'
 # burnin_id = '2022_08_06_21_08_47_004533'
 serialize_year = 50
 
@@ -42,7 +42,7 @@ cb.update_params({
     "Age_Initialization_Distribution_Type": 'DISTRIBUTION_COMPLEX',
     'x_Base_Population': 1,
     'x_Birth': 1
-    # 'x_Temporary_Larval_Habitat': 1
+    # 'x_Temporary_Larval_Habitat': 0.14479
 
 })
 
@@ -151,19 +151,19 @@ add_event_counter_report(cb, event_trigger_list=event_list, start=0, duration=10
 recurring_outbreak(cb, start_day=180, repetitions=pickup_years)
 # run_sim_args is what the `dtk run` command will look for
 user = os.getlogin()  # user initials
-expt_name = f'{user}_FE_2022_pickup_ITN_calibration_3_{serialize_year}'
+expt_name = f'{user}_FE_2022_pickup_ITN_calibration_5_{serialize_year}'
 
 """BUILDER"""
 builder = ModBuilder.from_list([[ModFn(case_management),
                                  ModFn(itn_intervention),
-                                 ModFn(irs_intervention,  IR=0.06),
+                                 ModFn(irs_intervention, IR=0.06),
                                  ModFn(DTKConfigBuilder.set_param, 'Serialized_Population_Path',
                                        os.path.join(row['outpath'], 'output')),
-                                 #ModFn(DTKConfigBuilder.set_param, 'Serialized_Population_Path',
+                                 # ModFn(DTKConfigBuilder.set_param, 'Serialized_Population_Path',
                                  #      os.path.join(ser_df[ser_df.Run_Number == seed].outpath.iloc[0], 'output')),
                                  ModFn(DTKConfigBuilder.set_param, 'Run_Number', seed),
-                                 ModFn(DTKConfigBuilder.set_param, 'x_Temporary_Larval_Habitat',
-                                       row['x_Temporary_Larval_Habitat']),
+                                 # ModFn(DTKConfigBuilder.set_param, 'x_Temporary_Larval_Habitat',
+                                 #     row['x_Temporary_Larval_Habitat']),
                                  ]
                                 # for itn_cov in [0.3]
                                 # for cm_cov_U5 in [0.2]

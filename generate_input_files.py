@@ -42,14 +42,15 @@ def generate_climate(demo_fname):
                           start_year='2001', num_years='16')
     cg.generate_climate_files()
 
+
 if __name__ == '__main__':
     inputs_path = os.path.join('./', 'input/Ghana')
     if not os.path.exists(inputs_path):
         os.mkdir(inputs_path)
 
-    df = pd.DataFrame(data={'nodeid': [1], 'population': [2000], 'ecozone': ['savannah'],
-                            'lat': [9.407840], 'lon': [-0.842240]})
+    df = pd.DataFrame(data={'nodeid': [1], 'population': [1000], 'ecozone': ['Coastal'],
+                            'lat': [5.603717], 'lon': [-0.186964]})
 
-    demo_fname = os.path.join(inputs_path, 'Ghana_demographics_Zone_1.json')
+    demo_fname = os.path.join(inputs_path, 'Ghana_demographics_Zone_3.json')
     generate_demographics(df, demo_fname)
     generate_climate(demo_fname)

@@ -17,12 +17,12 @@ import pandas as pd
 from malaria.interventions.health_seeking import add_health_seeking
 
 SetupParser.default_block = 'HPC'
-numseeds = 3
-pickup_years = 10
+numseeds = 5
+pickup_years = 5
 sim_start_year = 2020
 pull_year = 50
 
-burnin_id = '8ea49fc8-9b1e-ed11-a9fb-b88303911bc1'
+burnin_id = '5b13fe33-7d21-ed11-a9fb-b88303911bc1'
 serialize_year = 50
 
 SetupParser.init()
@@ -41,8 +41,8 @@ cb.update_params({
     "Relative_Humidity_Filename": os.path.join('Ghana', 'Ghana_30arcsec_relative_humidity_daily.bin'),
     "Age_Initialization_Distribution_Type": 'DISTRIBUTION_COMPLEX',
     'x_Base_Population': 1,
-    'x_Birth': 1
-    # 'x_Temporary_Larval_Habitat': 1
+    'x_Birth': 1,
+    'x_Temporary_Larval_Habitat': 0.14479
 
 })
 
@@ -66,19 +66,18 @@ event_list = []  ## Collect events to track in reports
 
 # health seeking, immediate start
 
-def case_management(cb, cm_cov_U5=0.2, cm_cov_adults=0.1):
+def case_management(cb, cm_cov_U5=0.56, cm_cov_adults=0.3):
     # Clinical cases
-    add_health_seeking(cb, start_day=366 * 4,
+    add_health_seeking(cb, start_day=0,
                        targets=[{'trigger': 'NewClinicalCase', 'coverage': cm_cov_U5,
                                  'agemin': 0, 'agemax': 5, 'seek': 1, 'rate': 0.3},
                                 {'trigger': 'NewClinicalCase', 'coverage': 0.3,
                                  'agemin': 5, 'agemax': 100, 'seek': 1, 'rate': 0.3}],
                        drug=['Artemether', 'Lumefantrine'],
-                       broadcast_event_name='Received_Treatment'
                        )
     # Severe cases
     add_health_seeking(cb, start_day=0,
-                       targets=[{'trigger': 'NewSevereCase', 'coverage': 0.49,
+                       targets=[{'trigger': 'NewSevereCase', 'coverage': cm_cov_adults,
                                  'agemin': 0, 'agemax': 100, 'seek': 1, 'rate': 0.5}],
                        drug=['Artemether', 'Lumefantrine'],
                        broadcast_event_name='Received_Severe_Treatment')
@@ -89,13 +88,13 @@ def case_management(cb, cm_cov_U5=0.2, cm_cov_adults=0.1):
 event_list = event_list + ['Received_Treatment', 'Received_Severe_Treatment']
 
 
-def itn_intervention(cb, ITN):
+def itn_intervention(cb, coverage_level, day=366):
     seasonal_times = [0.0, 20.0, 21.0, 30.0, 31.0, 365.0]
-    seasonal_values = [1.0, 1.0, 0.5, 0.5, 1.0, 1.0]
+    seasonal_values = [0.4, 0.4, 0.5, 0.5, 0.7, 0.7]
     # for i, j in zip(seasonal_times, seasonal_values, ):
     add_ITN_age_season(cb,
-                       start=365,
-                       demographic_coverage=0.9,
+                       start=day,
+                       demographic_coverage=coverage_level,
                        killing_config={
                            "Initial_Effect": 0.6,
                            "Decay_Time_Constant": 1460,
@@ -112,38 +111,61 @@ def itn_intervention(cb, ITN):
                        age_dependence={'Times': [0, 5, 18],
                                        'Values': [1, 0.7, 0.2]},
                        seasonal_dependence={"Times": seasonal_times, "Values": seasonal_values},
-                       )
-    return {'seasonal_itn': ITN}
+                       duration=-1, birth_triggered=False),
+
+    return {'itn_start': day,
+            'itn_coverage': coverage_level}
 
 
 event_list = event_list + ['Bednet_Got_New_One', 'Bednet_Using', 'Bednet_Discarded']
 
 
-# IRS intervention is only added for the Savannah Ecological zone starting 2014 (Onces a year at one year interval)
-def irs_intervention(cb, IR, ):
-    irs_days = [1464, 1830, 2196, 2562]
-    irs_cov = [0.06, 0.06, 0.06, 0.06]
-    KEs = [0.15, 0.15, 0.15]
-    for i, j, k in zip(irs_days, irs_cov, KEs):
-        add_IRS(cb, start=i,  # starts on first day of second year
-                coverage_by_ages=[
-                    {"coverage": j, "min": 0, "max": 100}],
-                killing_config={
-                    "class": "WaningEffectBoxExponential",
-                    "Box_Duration": 60,
-                    "Decay_Time_Constant": 120,
-                    "Initial_Effect": k})
-    return {'Killing_Effect': IR}
+# IRS, start after 1 year - single campaign
+def irs_intervention(cb, coverage_level, day=366):
+    add_IRS(cb, start=day,
+            coverage_by_ages=[{"coverage": coverage_level, "min": 0, "max": 100}],
+            killing_config={
+                "class": "WaningEffectBoxExponential",
+                "Box_Duration": 180,  # based on PMI data from Burkina
+                "Decay_Time_Constant": 90,  # Sumishield from Benin
+                "Initial_Effect": 0.7},
+            )
+
+    return {'irs_start': day,
+            'irs_coverage': coverage_level}
 
 
 event_list = event_list + ['Received_IRS']
+# # IRS intervention is only added for the Savannah Ecological zone starting 2014 (Onces a year at one year interval)
+# def irs_intervention(cb, KE=0.15):
+#     day = [1464, 1830, 2196, 2562]
+#     coverage_level = [0.06, 0.06, 0.06, 0.06]
+#     KEs = [KE] * 5
+#     for i, j, k in zip(day, coverage_level, KEs):
+#         add_IRS(cb, start=i,  # starts on first day of second year
+#                 coverage_by_ages=[
+#                     {"coverage": coverage_level, "min": 0, "max": 100}],
+#                 killing_config={
+#                     "class": "WaningEffectBoxExponential",
+#                     "Box_Duration": 120,
+#                     "Decay_Time_Constant": 120,
+#                     "Initial_Effect": k})
+#     return {'Killing_Effect': KE,
+#             'irs_coverage': coverage_level}
+#
+#
+# event_list = event_list + ['Received_IRS']
 
 """CUSTOM REPORTS"""
 add_filtered_report(cb, start=0, end=pickup_years * 365)
 # Summary report per agebin
-add_summary_report(cb, start=366, interval=365,
-                   age_bins=[0, 125],
+add_summary_report(cb, start=0, interval=365,
+                   age_bins=[0.25, 5],
                    description='U5_PfPR')
+
+add_summary_report(cb, start=1, interval=365,
+                   age_bins=[0.25, 5, 10, 18],
+                   description='Annual_Agebin')
 
 for year in range(pickup_years):
     start_day = 0 + 365 * year
@@ -161,25 +183,31 @@ cb.update_params({
     'Custom_Individual_Events': event_list
 })
 # Event_counter_report
-# add_event_counter_report(cb, event_trigger_list=event_list, start=0, duration=10000)
+add_event_counter_report(cb, event_trigger_list=event_list, start=0, duration=10000)
 recurring_outbreak(cb, start_day=180, repetitions=pickup_years)
 
 # run_sim_args is what the `dtk run` command will look for
 user = os.getlogin()  # user initials
-expt_name = f'{user}_FE_2022_pickup_ITN_calibration_3_{serialize_year}'
+expt_name = f'{user}_FE_2022_pickup_ITN_calibration_9_{serialize_year}'
 
 """BUILDER"""
-builder = ModBuilder.from_list([[ModFn(case_management),
-                                 ModFn(itn_intervention, ITN=0),
-                                 # ModFn(add_ITN_age_season),
+builder = ModBuilder.from_list([[ModFn(case_management),# cm_cov_U5, cm_cov_adults),
+                                 ModFn(itn_intervention, coverage_level=itn_cov),
+                                 ModFn(irs_intervention, coverage_level=irs_cov),
                                  ModFn(DTKConfigBuilder.set_param, 'Serialized_Population_Path',
                                        os.path.join(row['outpath'], 'output')),
                                  ModFn(DTKConfigBuilder.set_param, 'Run_Number', seed),
+                                 ModFn(DTKConfigBuilder.set_param, 'Scenario', 'Basic')  # optional
+
                                  ]
+                                #for cm_cov_U5 in [0.56]
+                                #for cm_cov_adults in [0.2]
+                                for itn_cov in [0, 0.4, 0.56, 0.8]
+                                for irs_cov in [0, 0.4, 0.56, 0.8]
                                 for seed in range(numseeds)
                                 for r, row in ser_df.iterrows()
                                 ])
-# (ser_df[ser_df.Run_Number==seed].
+
 run_sim_args = {
     'exp_name': expt_name,
     'config_builder': cb,
