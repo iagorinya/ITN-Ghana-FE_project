@@ -66,7 +66,7 @@
   },
   "Metadata": {
     "Author": "idm",
-    "DateCreated": "2022-08-17 10:53:51.095387",
+    "DateCreated": "2022-09-12 06:02:57.355653",
     "IdReference": "Custom user",
     "NodeCount": 1,
     "Resolution": 30,
@@ -188,11 +188,10 @@
         }
       },
       "NodeAttributes": {
-        "BirthRate": 0.17012054794520545,
-        "Ecozone": "Savannah",
-        "InitialPopulation": 2000,
-        "Latitude": 9.40784,
-        "Longitude": -0.84224
+        "BirthRate": 0.085060273972602726,
+        "InitialPopulation": 1000,
+        "Latitude": 5.603717,
+        "Longitude": -0.186964
       },
       "NodeID": 1
     }

@@ -48,8 +48,8 @@ if __name__ == '__main__':
     if not os.path.exists(inputs_path):
         os.mkdir(inputs_path)
 
-    df = pd.DataFrame(data={'nodeid': [1], 'population': [1000], 'ecozone': ['Coastal'],
-                            'lat': [5.603717], 'lon': [-0.186964]})
+    df = pd.DataFrame(data={'nodeid': [1], 'population': [1000], 'ecozone': ['Savannah zone'],
+                            'lat': [9.40784], 'lon': [-0.84224]})
 
     demo_fname = os.path.join(inputs_path, 'Ghana_demographics.json')
     generate_demographics(df, demo_fname)

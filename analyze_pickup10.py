@@ -8,8 +8,8 @@ SetupParser.default_block = 'HPC'
 
 user = os.getlogin()  # user initials
 
-expt_name = f'{user}_FE_2022_pickup_ITN_calibration_5_50'
-expt_id = '4f6cf3c4-8321-ed11-a9fb-b88303911bc1'  ## change expt_id
+expt_name = f'{user}_FE_2022_Calibration_zone3_50'
+expt_id = 'ab1c1847-1732-ed11-a9fc-b88303911bc1'  ## change expt_id
 working_dir = os.path.join('simulation_outputs')
 
 if __name__ == "__main__":

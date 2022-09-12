@@ -210,3 +210,359 @@
 2022-08-21 12:53:37,635: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
 2022-08-21 12:53:37,635: INFO: Downloading to ./input/Ghana...
 2022-08-21 12:53:38,493: INFO: Climate files SUCCESSFULLY stored.
+2022-08-26 18:44:49,063: INFO: Created request for climate files generation.
+2022-08-26 18:44:49,070: INFO: Commissioning...
+2022-08-26 18:44:49,469: INFO: CommissionRequested.
+2022-08-26 18:44:49,469: INFO: Work item id is: d1c45e0c-9925-ed11-a9fc-b88303911bc1.
+2022-08-26 18:46:42,193: INFO: Work item state is: WorkItemState.Succeeded
+2022-08-26 18:46:42,193: INFO: Climate files SUCCESSFULLY generated
+2022-08-26 18:46:44,761: INFO: Found output files:
+2022-08-26 18:46:44,761: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-08-26 18:46:44,761: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-08-26 18:46:44,761: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-08-26 18:46:44,761: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-08-26 18:46:44,761: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-08-26 18:46:44,761: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-08-26 18:46:44,761: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-08-26 18:46:44,761: INFO: Downloading to ./input/Ghana...
+2022-08-26 18:46:45,964: INFO: Climate files SUCCESSFULLY stored.
+2022-08-27 04:23:54,451: INFO: Created request for climate files generation.
+2022-08-27 04:23:54,451: INFO: Commissioning...
+2022-08-27 04:23:54,960: INFO: CommissionRequested.
+2022-08-27 04:23:54,960: INFO: Work item id is: 38d2c1f7-e925-ed11-a9fc-b88303911bc1.
+2022-08-27 04:25:10,412: INFO: Work item state is: WorkItemState.Succeeded
+2022-08-27 04:25:10,412: INFO: Climate files SUCCESSFULLY generated
+2022-08-27 04:25:11,510: INFO: Found output files:
+2022-08-27 04:25:11,510: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-08-27 04:25:11,510: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-08-27 04:25:11,510: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-08-27 04:25:11,510: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-08-27 04:25:11,510: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-08-27 04:25:11,510: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-08-27 04:25:11,510: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-08-27 04:25:11,510: INFO: Downloading to ./input/Ghana...
+2022-08-27 04:25:12,396: INFO: Climate files SUCCESSFULLY stored.
+2022-08-27 04:27:25,462: INFO: Created request for climate files generation.
+2022-08-27 04:27:25,462: INFO: Commissioning...
+2022-08-27 04:27:25,742: INFO: CommissionRequested.
+2022-08-27 04:27:25,742: INFO: Work item id is: 96839075-ea25-ed11-a9fc-b88303911bc1.
+2022-08-27 04:28:50,004: INFO: Work item state is: WorkItemState.Succeeded
+2022-08-27 04:28:50,004: INFO: Climate files SUCCESSFULLY generated
+2022-08-27 04:28:52,185: INFO: Found output files:
+2022-08-27 04:28:52,185: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-08-27 04:28:52,185: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-08-27 04:28:52,185: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-08-27 04:28:52,185: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-08-27 04:28:52,185: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-08-27 04:28:52,185: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-08-27 04:28:52,185: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-08-27 04:28:52,185: INFO: Downloading to ./input/Ghana...
+2022-08-27 04:28:53,265: INFO: Climate files SUCCESSFULLY stored.
+2022-08-27 04:36:59,353: INFO: Created request for climate files generation.
+2022-08-27 04:36:59,353: INFO: Commissioning...
+2022-08-27 04:37:00,014: INFO: CommissionRequested.
+2022-08-27 04:37:00,014: INFO: Work item id is: 614d93cb-eb25-ed11-a9fc-b88303911bc1.
+2022-08-27 04:38:10,496: INFO: Work item state is: WorkItemState.Succeeded
+2022-08-27 04:38:10,496: INFO: Climate files SUCCESSFULLY generated
+2022-08-27 04:38:11,793: INFO: Found output files:
+2022-08-27 04:38:11,793: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-08-27 04:38:11,793: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-08-27 04:38:11,793: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-08-27 04:38:11,793: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-08-27 04:38:11,793: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-08-27 04:38:11,793: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-08-27 04:38:11,793: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-08-27 04:38:11,793: INFO: Downloading to ./input/Ghana...
+2022-08-27 04:38:13,011: INFO: Climate files SUCCESSFULLY stored.
+2022-08-27 10:42:12,176: INFO: Created request for climate files generation.
+2022-08-27 10:42:12,177: INFO: Commissioning...
+2022-08-27 10:42:12,481: INFO: CommissionRequested.
+2022-08-27 10:42:12,481: INFO: Work item id is: 5640edcf-1e26-ed11-a9fc-b88303911bc1.
+2022-08-27 10:43:26,485: INFO: Work item state is: WorkItemState.Succeeded
+2022-08-27 10:43:26,485: INFO: Climate files SUCCESSFULLY generated
+2022-08-27 10:43:27,441: INFO: Found output files:
+2022-08-27 10:43:27,441: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-08-27 10:43:27,441: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-08-27 10:43:27,442: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-08-27 10:43:27,442: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-08-27 10:43:27,442: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-08-27 10:43:27,442: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-08-27 10:43:27,442: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-08-27 10:43:27,442: INFO: Downloading to ./input/Ghana...
+2022-08-27 10:43:28,086: INFO: Climate files SUCCESSFULLY stored.
+2022-08-29 08:32:33,135: INFO: Created request for climate files generation.
+2022-08-29 08:32:33,135: INFO: Commissioning...
+2022-08-29 08:32:33,439: INFO: CommissionRequested.
+2022-08-29 08:32:33,447: INFO: Work item id is: 8f68d008-9f27-ed11-a9fc-b88303911bc1.
+2022-08-29 08:33:58,276: INFO: Work item state is: WorkItemState.Succeeded
+2022-08-29 08:33:58,276: INFO: Climate files SUCCESSFULLY generated
+2022-08-29 08:34:00,188: INFO: Found output files:
+2022-08-29 08:34:00,188: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-08-29 08:34:00,188: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-08-29 08:34:00,188: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-08-29 08:34:00,188: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-08-29 08:34:00,188: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-08-29 08:34:00,188: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-08-29 08:34:00,188: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-08-29 08:34:00,188: INFO: Downloading to ./input/Ghana...
+2022-08-29 08:34:01,773: INFO: Climate files SUCCESSFULLY stored.
+2022-08-29 17:15:09,687: INFO: Created request for climate files generation.
+2022-08-29 17:15:09,687: INFO: Commissioning...
+2022-08-29 17:15:09,922: INFO: CommissionRequested.
+2022-08-29 17:15:09,922: INFO: Work item id is: 9435de0a-e827-ed11-a9fc-b88303911bc1.
+2022-08-29 17:16:34,274: INFO: Work item state is: WorkItemState.Succeeded
+2022-08-29 17:16:34,274: INFO: Climate files SUCCESSFULLY generated
+2022-08-29 17:16:35,560: INFO: Found output files:
+2022-08-29 17:16:35,560: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-08-29 17:16:35,560: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-08-29 17:16:35,560: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-08-29 17:16:35,560: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-08-29 17:16:35,560: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-08-29 17:16:35,560: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-08-29 17:16:35,560: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-08-29 17:16:35,560: INFO: Downloading to ./input/Ghana...
+2022-08-29 17:16:36,211: INFO: Climate files SUCCESSFULLY stored.
+2022-08-30 10:57:34,187: INFO: Created request for climate files generation.
+2022-08-30 10:57:34,198: INFO: Commissioning...
+2022-08-30 10:57:34,494: INFO: CommissionRequested.
+2022-08-30 10:57:34,494: INFO: Work item id is: c1d98975-7c28-ed11-a9fc-b88303911bc1.
+2022-08-30 10:59:09,233: INFO: Work item state is: WorkItemState.Succeeded
+2022-08-30 10:59:09,233: INFO: Climate files SUCCESSFULLY generated
+2022-08-30 10:59:10,143: INFO: Found output files:
+2022-08-30 10:59:10,143: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-08-30 10:59:10,143: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-08-30 10:59:10,143: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-08-30 10:59:10,143: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-08-30 10:59:10,143: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-08-30 10:59:10,143: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-08-30 10:59:10,143: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-08-30 10:59:10,143: INFO: Downloading to ./input/Ghana...
+2022-08-30 10:59:11,001: INFO: Climate files SUCCESSFULLY stored.
+2022-08-31 20:18:21,597: INFO: Created request for climate files generation.
+2022-08-31 20:18:21,608: INFO: Commissioning...
+2022-08-31 20:18:21,911: INFO: CommissionRequested.
+2022-08-31 20:18:21,911: INFO: Work item id is: 8ed529f2-9329-ed11-a9fc-b88303911bc1.
+2022-08-31 20:20:08,292: INFO: Work item state is: WorkItemState.Succeeded
+2022-08-31 20:20:08,292: INFO: Climate files SUCCESSFULLY generated
+2022-08-31 20:20:09,261: INFO: Found output files:
+2022-08-31 20:20:09,261: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-08-31 20:20:09,261: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-08-31 20:20:09,261: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-08-31 20:20:09,261: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-08-31 20:20:09,261: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-08-31 20:20:09,261: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-08-31 20:20:09,261: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-08-31 20:20:09,261: INFO: Downloading to ./input/Ghana...
+2022-08-31 20:20:10,285: INFO: Climate files SUCCESSFULLY stored.
+2022-08-31 20:54:53,904: INFO: Created request for climate files generation.
+2022-08-31 20:54:53,904: INFO: Commissioning...
+2022-08-31 20:54:54,210: INFO: CommissionRequested.
+2022-08-31 20:54:54,210: INFO: Work item id is: 2c34d610-9929-ed11-a9fc-b88303911bc1.
+2022-08-31 20:56:03,949: INFO: Work item state is: WorkItemState.Succeeded
+2022-08-31 20:56:03,949: INFO: Climate files SUCCESSFULLY generated
+2022-08-31 20:56:04,946: INFO: Found output files:
+2022-08-31 20:56:04,946: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-08-31 20:56:04,946: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-08-31 20:56:04,946: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-08-31 20:56:04,946: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-08-31 20:56:04,946: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-08-31 20:56:04,946: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-08-31 20:56:04,946: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-08-31 20:56:04,946: INFO: Downloading to ./input/Ghana...
+2022-08-31 20:56:05,832: INFO: Climate files SUCCESSFULLY stored.
+2022-09-01 00:27:36,370: INFO: Created request for climate files generation.
+2022-09-01 00:27:36,370: INFO: Commissioning...
+2022-09-01 00:27:36,644: INFO: CommissionRequested.
+2022-09-01 00:27:36,644: INFO: Work item id is: 8d3c24c9-b629-ed11-a9fc-b88303911bc1.
+2022-09-01 00:29:06,519: INFO: Work item state is: WorkItemState.Succeeded
+2022-09-01 00:29:06,519: INFO: Climate files SUCCESSFULLY generated
+2022-09-01 00:29:08,399: INFO: Found output files:
+2022-09-01 00:29:08,400: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-09-01 00:29:08,400: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-09-01 00:29:08,400: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-09-01 00:29:08,400: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-09-01 00:29:08,400: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-09-01 00:29:08,400: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-09-01 00:29:08,401: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-09-01 00:29:08,401: INFO: Downloading to ./input/Ghana...
+2022-09-01 00:29:09,086: INFO: Climate files SUCCESSFULLY stored.
+2022-09-01 09:34:40,795: INFO: Created request for climate files generation.
+2022-09-01 09:34:40,796: INFO: Commissioning...
+2022-09-01 09:34:41,059: INFO: CommissionRequested.
+2022-09-01 09:34:41,059: INFO: Work item id is: 35d70236-032a-ed11-a9fc-b88303911bc1.
+2022-09-01 09:36:10,920: INFO: Work item state is: WorkItemState.Succeeded
+2022-09-01 09:36:10,920: INFO: Climate files SUCCESSFULLY generated
+2022-09-01 09:36:11,818: INFO: Found output files:
+2022-09-01 09:36:11,818: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-09-01 09:36:11,818: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-09-01 09:36:11,818: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-09-01 09:36:11,819: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-09-01 09:36:11,819: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-09-01 09:36:11,819: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-09-01 09:36:11,819: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-09-01 09:36:11,819: INFO: Downloading to ./input/Ghana...
+2022-09-01 09:36:12,596: INFO: Climate files SUCCESSFULLY stored.
+2022-09-01 10:03:54,118: INFO: Created request for climate files generation.
+2022-09-01 10:03:54,118: INFO: Commissioning...
+2022-09-01 10:03:54,364: INFO: CommissionRequested.
+2022-09-01 10:03:54,364: INFO: Work item id is: fd0b194b-072a-ed11-a9fc-b88303911bc1.
+2022-09-01 10:05:19,466: INFO: Work item state is: WorkItemState.Succeeded
+2022-09-01 10:05:19,466: INFO: Climate files SUCCESSFULLY generated
+2022-09-01 10:05:20,907: INFO: Found output files:
+2022-09-01 10:05:20,909: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-09-01 10:05:20,909: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-09-01 10:05:20,909: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-09-01 10:05:20,909: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-09-01 10:05:20,909: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-09-01 10:05:20,909: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-09-01 10:05:20,909: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-09-01 10:05:20,909: INFO: Downloading to ./input/Ghana...
+2022-09-01 10:05:21,981: INFO: Climate files SUCCESSFULLY stored.
+2022-09-01 10:19:12,109: INFO: Created request for climate files generation.
+2022-09-01 10:19:12,109: INFO: Commissioning...
+2022-09-01 10:19:12,390: INFO: CommissionRequested.
+2022-09-01 10:19:12,390: INFO: Work item id is: 74a8446e-092a-ed11-a9fc-b88303911bc1.
+2022-09-01 10:20:53,225: INFO: Work item state is: WorkItemState.Succeeded
+2022-09-01 10:20:53,225: INFO: Climate files SUCCESSFULLY generated
+2022-09-01 10:20:54,153: INFO: Found output files:
+2022-09-01 10:20:54,153: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-09-01 10:20:54,153: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-09-01 10:20:54,153: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-09-01 10:20:54,153: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-09-01 10:20:54,153: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-09-01 10:20:54,153: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-09-01 10:20:54,153: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-09-01 10:20:54,153: INFO: Downloading to ./input/Ghana...
+2022-09-01 10:20:54,907: INFO: Climate files SUCCESSFULLY stored.
+2022-09-06 11:40:19,778: INFO: Created request for climate files generation.
+2022-09-06 11:40:19,786: INFO: Commissioning...
+2022-09-06 11:40:20,048: INFO: CommissionRequested.
+2022-09-06 11:40:20,048: INFO: Work item id is: e9169897-022e-ed11-a9fc-b88303911bc1.
+2022-09-06 11:41:33,938: INFO: Work item state is: WorkItemState.Succeeded
+2022-09-06 11:41:33,938: INFO: Climate files SUCCESSFULLY generated
+2022-09-06 11:41:35,449: INFO: Found output files:
+2022-09-06 11:41:35,449: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-09-06 11:41:35,449: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-09-06 11:41:35,449: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-09-06 11:41:35,449: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-09-06 11:41:35,449: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-09-06 11:41:35,449: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-09-06 11:41:35,449: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-09-06 11:41:35,449: INFO: Downloading to ./input/Ghana...
+2022-09-06 11:41:36,335: INFO: Climate files SUCCESSFULLY stored.
+2022-09-09 11:06:40,816: INFO: Created request for climate files generation.
+2022-09-09 11:06:40,825: INFO: Commissioning...
+2022-09-09 11:06:41,081: INFO: CommissionRequested.
+2022-09-09 11:06:41,081: INFO: Work item id is: 9dd87663-5930-ed11-a9fc-b88303911bc1.
+2022-09-09 17:44:53,175: INFO: Created request for climate files generation.
+2022-09-09 17:44:53,175: INFO: Commissioning...
+2022-09-09 17:44:53,470: INFO: CommissionRequested.
+2022-09-09 17:44:53,470: INFO: Work item id is: 3a9e6804-9130-ed11-a9fc-b88303911bc1.
+2022-09-09 17:46:28,615: INFO: Work item state is: WorkItemState.Succeeded
+2022-09-09 17:46:28,615: INFO: Climate files SUCCESSFULLY generated
+2022-09-09 17:46:30,195: INFO: Found output files:
+2022-09-09 17:46:30,195: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-09-09 17:46:30,195: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-09-09 17:46:30,200: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-09-09 17:46:30,200: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-09-09 17:46:30,200: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-09-09 17:46:30,200: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-09-09 17:46:30,200: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-09-09 17:46:30,200: INFO: Downloading to ./input/Ghana...
+2022-09-09 17:46:31,115: INFO: Climate files SUCCESSFULLY stored.
+2022-09-09 17:51:51,015: INFO: Created request for climate files generation.
+2022-09-09 17:51:51,015: INFO: Commissioning...
+2022-09-09 17:51:51,354: INFO: CommissionRequested.
+2022-09-09 17:51:51,354: INFO: Work item id is: 6bbd71fd-9130-ed11-a9fc-b88303911bc1.
+2022-09-09 17:53:21,084: INFO: Work item state is: WorkItemState.Succeeded
+2022-09-09 17:53:21,084: INFO: Climate files SUCCESSFULLY generated
+2022-09-09 17:53:21,904: INFO: Found output files:
+2022-09-09 17:53:21,904: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-09-09 17:53:21,904: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-09-09 17:53:21,904: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-09-09 17:53:21,904: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-09-09 17:53:21,904: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-09-09 17:53:21,904: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-09-09 17:53:21,904: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-09-09 17:53:21,904: INFO: Downloading to ./input/Ghana...
+2022-09-09 17:53:22,564: INFO: Climate files SUCCESSFULLY stored.
+2022-09-11 10:54:19,536: INFO: Created request for climate files generation.
+2022-09-11 10:54:19,537: INFO: Commissioning...
+2022-09-11 10:54:19,835: INFO: CommissionRequested.
+2022-09-11 10:54:19,835: INFO: Work item id is: d40337fe-e931-ed11-a9fc-b88303911bc1.
+2022-09-11 10:55:49,448: INFO: Work item state is: WorkItemState.Succeeded
+2022-09-11 10:55:49,448: INFO: Climate files SUCCESSFULLY generated
+2022-09-11 10:55:50,458: INFO: Found output files:
+2022-09-11 10:55:50,458: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-09-11 10:55:50,458: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-09-11 10:55:50,458: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-09-11 10:55:50,458: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-09-11 10:55:50,458: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-09-11 10:55:50,458: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-09-11 10:55:50,458: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-09-11 10:55:50,458: INFO: Downloading to ./input/Ghana...
+2022-09-11 10:55:51,272: INFO: Climate files SUCCESSFULLY stored.
+2022-09-11 12:15:21,532: INFO: Created request for climate files generation.
+2022-09-11 12:15:21,533: INFO: Commissioning...
+2022-09-11 12:15:21,832: INFO: CommissionRequested.
+2022-09-11 12:15:21,832: INFO: Work item id is: 09c03150-f531-ed11-a9fc-b88303911bc1.
+2022-09-11 12:16:36,144: INFO: Work item state is: WorkItemState.Succeeded
+2022-09-11 12:16:36,144: INFO: Climate files SUCCESSFULLY generated
+2022-09-11 12:16:37,055: INFO: Found output files:
+2022-09-11 12:16:37,056: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-09-11 12:16:37,056: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-09-11 12:16:37,056: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-09-11 12:16:37,056: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-09-11 12:16:37,056: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-09-11 12:16:37,056: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-09-11 12:16:37,056: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-09-11 12:16:37,056: INFO: Downloading to ./input/Ghana...
+2022-09-11 12:16:37,877: INFO: Climate files SUCCESSFULLY stored.
+2022-09-11 12:22:31,018: INFO: Created request for climate files generation.
+2022-09-11 12:22:31,018: INFO: Commissioning...
+2022-09-11 12:22:31,316: INFO: CommissionRequested.
+2022-09-11 12:22:31,316: INFO: Work item id is: 65f84b4b-f631-ed11-a9fc-b88303911bc1.
+2022-09-11 12:23:45,196: INFO: Work item state is: WorkItemState.Succeeded
+2022-09-11 12:23:45,197: INFO: Climate files SUCCESSFULLY generated
+2022-09-11 12:23:45,988: INFO: Found output files:
+2022-09-11 12:23:45,988: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-09-11 12:23:45,988: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-09-11 12:23:45,988: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-09-11 12:23:45,988: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-09-11 12:23:45,988: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-09-11 12:23:45,988: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-09-11 12:23:45,988: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-09-11 12:23:45,989: INFO: Downloading to ./input/Ghana...
+2022-09-11 12:23:46,624: INFO: Climate files SUCCESSFULLY stored.
+2022-09-11 14:42:44,981: INFO: Created request for climate files generation.
+2022-09-11 14:42:44,981: INFO: Commissioning...
+2022-09-11 14:42:45,261: INFO: CommissionRequested.
+2022-09-11 14:42:45,261: INFO: Work item id is: 21754ee7-0932-ed11-a9fc-b88303911bc1.
+2022-09-11 14:44:20,717: INFO: Work item state is: WorkItemState.Succeeded
+2022-09-11 14:44:20,717: INFO: Climate files SUCCESSFULLY generated
+2022-09-11 14:44:21,710: INFO: Found output files:
+2022-09-11 14:44:21,710: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-09-11 14:44:21,710: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-09-11 14:44:21,710: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-09-11 14:44:21,710: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-09-11 14:44:21,710: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-09-11 14:44:21,710: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-09-11 14:44:21,710: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-09-11 14:44:21,710: INFO: Downloading to ./input/Ghana...
+2022-09-11 14:44:22,482: INFO: Climate files SUCCESSFULLY stored.
+2022-09-12 06:02:58,550: INFO: Created request for climate files generation.
+2022-09-12 06:02:58,550: INFO: Commissioning...
+2022-09-12 06:02:58,805: INFO: CommissionRequested.
+2022-09-12 06:02:58,813: INFO: Work item id is: 28c9de74-8a32-ed11-a9fc-b88303911bc1.
+2022-09-12 06:04:18,383: INFO: Work item state is: WorkItemState.Succeeded
+2022-09-12 06:04:18,383: INFO: Climate files SUCCESSFULLY generated
+2022-09-12 06:04:19,403: INFO: Found output files:
+2022-09-12 06:04:19,403: INFO: - Ghana_30arcsec_rainfall_daily.bin (23 KB)
+2022-09-12 06:04:19,411: INFO: - Ghana_30arcsec_air_temperature_daily.bin (23 KB)
+2022-09-12 06:04:19,411: INFO: - Ghana_30arcsec_relative_humidity_daily.bin (23 KB)
+2022-09-12 06:04:19,411: INFO: - Ghana_30arcsec_rainfall_daily.bin.json (982 bytes)
+2022-09-12 06:04:19,411: INFO: - Ghana_30arcsec_relative_humidity_daily.bin.json (992 bytes)
+2022-09-12 06:04:19,411: INFO: - Ghana_30arcsec_air_temperature_daily.bin.json (992 bytes)
+2022-09-12 06:04:19,411: INFO: - Ghana_2.5arcmin_demographics.json (5 KB)
+2022-09-12 06:04:19,411: INFO: Downloading to ./input/Ghana...
+2022-09-12 06:04:20,121: INFO: Climate files SUCCESSFULLY stored.

@@ -3,6 +3,7 @@ import os
 import pandas as pd
 import matplotlib as mpl
 
+
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -10,7 +11,7 @@ from calibtool.LL_calculators import beta_binomial
 
 user = os.getlogin()  # user initials
 #expt_name = f'{user}_Zimbabwe_Mutasa_PickupB{4}'
-expt_name = f'{user}_FE_2022_pickup_ITN_calibration_3_50'
+expt_name = f'{user}_FE_2022_Calibration_zone1_50'
 output_dir = os.path.join('simulation_outputs')
 input_dir = os.path.join('input')
 data_dir = os.path.join('data')
@@ -71,7 +72,7 @@ def plot_output(sim_df, data_df, score_df, variable):
     axes[1].set_ylabel('log-likelihood')
     axes[1].set_xlabel('Temporary Larval Habitat Multiplier')
     axes[1].set_title('Mean log-likelihood. Larger value = better fit')
-
+    #axes[1].set_xscale('log')
     fig.savefig(os.path.join(output_dir, expt_name, 'Savannah.png'))
 
 

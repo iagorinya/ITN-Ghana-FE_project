@@ -11,8 +11,8 @@ from malaria.reports.MalariaReport import add_summary_report
 ## Import custom reporters
 
 SetupParser.default_block = 'HPC'
-numseeds = 3
-sim_start_year = 1961
+numseeds = 5
+sim_start_year = 1960
 serialize_years = 50
 
 cb = DTKConfigBuilder.from_defaults('MALARIA_SIM', Simulation_Duration=serialize_years * 365)
@@ -72,7 +72,7 @@ add_summary_report(cb, age_bins=[5, 100], start=365 * serialize_years, interval=
 
 # run_sim_args is what the `dtk run` command will look for
 user = os.getlogin()  # user initials
-expt_name = f'{user}_FE_2022_burnin_ITN_calibration_5_{serialize_years}'
+expt_name = f'{user}_FE_2022_burnin_project_{serialize_years}'
 
 """BUILDER"""
 builder = ModBuilder.from_list([[ModFn(DTKConfigBuilder.set_param, 'Run_Number', x),

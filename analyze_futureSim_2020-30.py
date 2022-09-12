@@ -12,9 +12,9 @@ import matplotlib.dates as mdates
 SetupParser.default_block = 'HPC'
 
 user = os.getlogin()  # user initials
-# expt_name = f'{user}_FE_2022_example_w3b'
-expt_name = f'{user}_FE_2022_pickup_ITN_calibration_9_50'
-expt_id = '31a0f8bd-5a22-ed11-a9fb-b88303911bc1'  ## change expt_id
+expt_name = f'{user}_FE_2022_futureSim_zone_3'
+expt_id = '30ed8733-8732-ed11-a9fc-b88303911bc1'  ## change expt_id
+
 working_dir = os.path.join('simulation_outputs')
 
 
@@ -36,7 +36,8 @@ def plot_inset_chart(channels_inset_chart, sweep_variables):
         ax.set_title(channel)
         ax.set_ylabel(channel)
         ax.xaxis.set_major_locator(mdates.MonthLocator(interval=12))
-        ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+        # ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+        ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
     axes[-1].legend(title=sweep_variables)
     fig1.savefig(os.path.join(working_dir, expt_name, 'InsetChart.png'))
 
@@ -48,7 +49,7 @@ def plot_summary_report(sweep_variables):
     df = df.sort_values(by='agebin')
     # take mean over all years in report
     df = df.groupby(['agebin'] + sweep_variables)[channels_summary_report].agg(np.mean).reset_index()
-
+    #df = df[df['%Y'] >= 2019]
     # make summary report plot
     fig2 = plt.figure('Summary Report', figsize=(6, 5))
     fig2.subplots_adjust(right=0.96, left=0.12, hspace=0.55, wspace=0.35, top=0.83, bottom=0.10)
@@ -110,32 +111,35 @@ if __name__ == "__main__":
     SetupParser.init()
 
     """Set sweep_variables and event_list as required depending on experiment"""
-    #sweep_variables = ['cm_cov_U5', 'itn_coverage', 'cm_cov_adults', 'irs_coverage', 'Run_Number']
-    sweep_variables = ['itn_coverage', 'irs_coverage', 'Run_Number']
+    # sweep_variables = ['cm_cov_U5', 'itn_coverage', 'cm_cov_adults', 'irs_coverage', 'Run_Number']
+    sweep_variables = ['Run_Number', 'itn_coverage', 'irs_coverage']
+    # event_list = ['Received_ITN']
     event_list = ['Bednet_Got_New_One', 'Bednet_Using', 'Bednet_Discarded', 'Received_Treatment',
                   'Received_Severe_Treatment', 'Received_IRS']
     channels_inset_chart = ['Statistical Population', 'New Clinical Cases', 'Adult Vectors', 'Infected']
 
-    analyzers = [InsetChartAnalyzer(expt_name=expt_name,
-                                    working_dir=working_dir,
-                                    channels=channels_inset_chart,
-                                    sweep_variables=sweep_variables),
-                 ReceivedCampaignAnalyzer(expt_name=expt_name,
-                                          working_dir=working_dir,
-                                          channels=event_list,
-                                          start_year=2020,
-                                          sweep_variables=sweep_variables),
-                 MonthlyPfPRAnalyzerU5(expt_name=expt_name,
-                                       working_dir=working_dir,
-                                       start_year=2020,
-                                       # end_year=2030,
-                                       sweep_variables=sweep_variables),
-                 AnnualAgebinPfPRAnalyzer(expt_name=expt_name,
-                                          working_dir=working_dir,
-                                          start_year=2020,
-                                          sweep_variables=sweep_variables),
+    analyzers = [
+        InsetChartAnalyzer(expt_name=expt_name,
+                           working_dir=working_dir,
+                           channels=channels_inset_chart,
+                           sweep_variables=sweep_variables,
+                           start_year=2021),
+        ReceivedCampaignAnalyzer(expt_name=expt_name,
+                                 working_dir=working_dir,
+                                 channels=event_list,
+                                 start_year=2021,
+                                 sweep_variables=sweep_variables),
+        MonthlyPfPRAnalyzerU5(expt_name=expt_name,
+                              working_dir=working_dir,
+                              start_year=2021,
+                              end_year=2026,
+                              sweep_variables=sweep_variables),
+        AnnualAgebinPfPRAnalyzer(expt_name=expt_name,
+                                 working_dir=working_dir,
+                                 start_year=2021,
+                                 sweep_variables=sweep_variables),
 
-                 ]
+    ]
 
     am = AnalyzeManager(expt_id, analyzers=analyzers)
     am.analyze()

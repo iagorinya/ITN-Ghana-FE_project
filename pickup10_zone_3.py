@@ -14,6 +14,7 @@ import pandas as pd
 import numpy as np
 from malaria.interventions.health_seeking import add_health_seeking
 from dtk.interventions.irs import add_IRS
+from dtk.interventions.itn_age_season import add_ITN_age_season
 
 SetupParser.default_block = 'HPC'
 # numseeds = 3
@@ -21,7 +22,7 @@ pickup_years = 10
 sim_start_year = 2010
 pull_year = 50
 
-burnin_id = 'd7164cd8-f123-ed11-a9fb-b88303911bc1'
+burnin_id = 'a16c9123-f731-ed11-a9fc-b88303911bc1'
 # burnin_id = '2022_08_06_21_08_47_004533'
 serialize_year = 50
 
@@ -60,54 +61,69 @@ set_larval_habitat(cb, {"arabiensis": {'TEMPORARY_RAINFALL': 7.5e9, 'CONSTANT': 
                         "gambiae": {'TEMPORARY_RAINFALL': 8.3e8, 'CONSTANT': 1e7}
                         })
 
+
 # Add case management including two interventions
-event_list = []  ## Collect events to track in reports
-
-
-# health seeking, immediate start
-
-def case_management(cb, cm_cov_U5=0.69, cm_cov_adults=0.5):
+def case_management(cb, cm_cov_U5=0.30, cm_cov_adults=0.30, start_year=365):
     # Clinical cases
-    add_health_seeking(cb, start_day=366 * 4,
-                       targets=[{'trigger': 'NewClinicalCase', 'coverage': cm_cov_U5,
-                                 'agemin': 0, 'agemax': 5, 'seek': 1, 'rate': 0.3},
-                                {'trigger': 'NewClinicalCase', 'coverage': 0.5,
-                                 'agemin': 5, 'agemax': 100, 'seek': 1, 'rate': 0.3}],
-                       drug=['Artemether', 'Lumefantrine'])
-    # Severe cases
-    add_health_seeking(cb, start_day=0,
-                       targets=[{'trigger': 'NewSevereCase', 'coverage': 0.9,
-                                 'agemin': 0, 'agemax': 100, 'seek': 1, 'rate': 0.5}],
-                       drug=['Artemether', 'Lumefantrine'],
-                       broadcast_event_name='Received_Severe_Treatment')
+    for i in [start_year * 7, start_year * 8, start_year * 9]:
+        add_health_seeking(cb, start_day=i,
+                           targets=[{'trigger': 'NewClinicalCase', 'coverage': cm_cov_U5,
+                                     'agemin': 0, 'agemax': 5, 'seek': 1, 'rate': 0.3},
+                                    {'trigger': 'NewClinicalCase', 'coverage': 0.3,
+                                     'agemin': 5, 'agemax': 100, 'seek': 1, 'rate': 0.3}],
+                           drug=['Artemether', 'Lumefantrine'],
+                           )
+        # Severe cases
+        add_health_seeking(cb, start_day=i,
+                           targets=[{'trigger': 'NewSevereCase', 'coverage': 0.6,
+                                     'agemin': 0, 'agemax': 100, 'seek': 1, 'rate': 0.5}],
+                           drug=['Artemether', 'Lumefantrine'],
+                           broadcast_event_name='Received_Severe_Treatment')
     return {'cm_cov_U5': cm_cov_U5,
             'cm_cov_adults': cm_cov_adults}
 
 
-event_list = event_list + ['Received_Treatment', 'Received_Severe_Treatment']
+event_list = []  ## Collect events to track in reports
 
 
-# Add intervention
-def itn_intervention(cb, coverage_level=0.64):
-    add_ITN(cb,
-            start=366,  # starts on first day of second year
-            coverage_by_ages=[
-                {"coverage": coverage_level, "min": 0, "max": 5},  # Highest coverage for 0-10 years old
-                {"coverage": coverage_level * 0.75, "min": 5, "max": 100},
-            ],
-            repetitions=3,  # ITN will be distributed 5 times
-            tsteps_btwn_repetitions=365 * 3  # three years between ITN distributions
-            )
+def itn_intervention(cb, coverage_level=0.56):
+    seasonal_values = [0.032, 0.032, 0.0378, 0.154, 0.177, 0.105, 0.25, 0.32, 0.23, 0.18, 0.032]
+    seasonal_times = [0, 32, 60, 91, 121, 152, 182, 213, 244, 274, 364]
+    deploy_year = 365
+    for i in [deploy_year * 6, deploy_year * 8, deploy_year * 9]:  # , deploy_year * 6, deploy_year * 9]:
+        add_ITN_age_season(cb,
+                           start=i,
+                           demographic_coverage=coverage_level,
+                           killing_config={
+                               "Initial_Effect": 0.6,
+                               "Decay_Time_Constant": 1460,
+                               "class": "WaningEffectExponential"},
+                           blocking_config={
+                               "Initial_Effect": 0.9,
+                               "Decay_Time_Constant": 730,
+                               "class": "WaningEffectExponential"},
+                           discard_times={
+                               "Expiration_Period_Distribution": "DUAL_EXPONENTIAL_DISTRIBUTION",
+                               "Expiration_Period_Proportion_1": 0.9,
+                               "Expiration_Period_Mean_1": 365 * 1.5,
+                               "Expiration_Period_Mean_2": 3650},
+                           age_dependence={'Times': [5, 18],
+                                           'Values': [0.7, 0.2]},
+                           seasonal_dependence={"Times": seasonal_times, "Values": seasonal_values},
+                           duration=-1, birth_triggered=False)
+
     return {'itn_coverage': coverage_level}
 
 
-event_list = event_list + ['Received_ITN']
+event_list = event_list + ['Bednet_Got_New_One', 'Bednet_Using', 'Bednet_Discarded']
 
 
-# IRS intervention is only added for the Savannah Ecological zone starting 2014 (Onces a year at one year interval)
-def irs_intervention(cb, coverage_level):
+# IRS, start after 1 year - single campaign
+def irs_intervention(cb, coverage_level=0.60):
     deploy_year = 365
-    for i in [deploy_year*1, deploy_year*2, deploy_year*3, deploy_year*4, deploy_year*5, deploy_year*6, deploy_year*7, deploy_year*8,deploy_year*8,   ]:
+    for i in [deploy_year * 4, deploy_year * 5, deploy_year * 6, deploy_year * 7,
+              deploy_year * 8, deploy_year * 9]:  # , deploy_year * 0,
+        # deploy_year * 7, deploy_year * 8, deploy_year * 8, ]:
         add_IRS(cb, start=i,
                 coverage_by_ages=[{"coverage": coverage_level, "min": 0, "max": 18}],
                 killing_config={
@@ -122,18 +138,40 @@ def irs_intervention(cb, coverage_level):
 
 event_list = event_list + ['Received_IRS']
 
+# seasonal malaria chemoprevention
+# def smc_intervention(cb, coverage_level=0.85, year = 365, cycles=4):
+#     add_drug_campaign(cb, campaign_type='SMC', drug_code='SDX_PYR_A',
+#                       coverage=coverage_level,
+#                       start_days=[year*5, year *6, year*7, year * 8, year * 9],  # 4 cycles
+#                       repetitions=cycles,
+#                       tsteps_btwn_repetitions=30,
+#                       # target_group={'agemin': 0.25, 'agemax': 5},
+#                       target_group={'agemin': 0.25, 'agemax': 5},
+#                       receiving_drugs_event_name='Received_SMC')
+#
+#     return {'smc_start': year,
+#             'smc_cycle': cycles,
+#             'smc_coverage': coverage_level}
+#
+#
+# event_list = event_list + ['Received_SMC']
+
 """CUSTOM REPORTS"""
 add_filtered_report(cb, start=0, end=pickup_years * 365)
 # Summary report per agebin
-add_summary_report(cb, start=366, interval=365,
-                   age_bins=[0.25, 5, 100],
+add_summary_report(cb, start=0, interval=365,
+                   age_bins=[0.25, 5],
                    description='U5_PfPR')
+
+add_summary_report(cb, start=1, interval=365,
+                   age_bins=[0, 5, 10, 18, 100],
+                   description='Annual_Agebin')
 
 for year in range(pickup_years):
     start_day = 0 + 365 * year
     sim_year = sim_start_year + year
     add_summary_report(cb, start=start_day, interval=30,
-                       age_bins=[0.25, 5, 100],
+                       age_bins=[0.25, 5],
                        description=f'Monthly_U5_{sim_year}')
 
 # Enable reporters
@@ -150,12 +188,13 @@ add_event_counter_report(cb, event_trigger_list=event_list, start=0, duration=10
 recurring_outbreak(cb, start_day=180, repetitions=pickup_years)
 # run_sim_args is what the `dtk run` command will look for
 user = os.getlogin()  # user initials
-expt_name = f'{user}_FE_2022_Calibration_zone1_{serialize_year}'
+expt_name = f'{user}_FE_2022_Calibration_zone3_{serialize_year}'
 
 """BUILDER"""
 builder = ModBuilder.from_list([[ModFn(case_management),
                                  ModFn(itn_intervention),
                                  ModFn(irs_intervention),
+                                 # ModFn(smc_intervention),
                                  ModFn(DTKConfigBuilder.set_param, 'Serialized_Population_Path',
                                        os.path.join(row['outpath'], 'output')),
                                  # ModFn(DTKConfigBuilder.set_param, 'Serialized_Population_Path',
@@ -168,7 +207,7 @@ builder = ModBuilder.from_list([[ModFn(case_management),
                                 # for cm_cov_U5 in [0.2]
                                 # for cm_cov_adults in [0.1]
                                 # for ke in [0.06]
-                                for hab_scale in np.logspace(-2, np.log10(30), 7)
+                                # for hab_scale in np.logspace(-2, np.log10(30), 7)
                                 # for seed in range(numseeds)
                                 for r, row in ser_df.iterrows()
                                 ])

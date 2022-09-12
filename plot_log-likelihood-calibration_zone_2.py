@@ -10,7 +10,7 @@ from calibtool.LL_calculators import beta_binomial
 
 user = os.getlogin()  # user initials
 #expt_name = f'{user}_Zimbabwe_Mutasa_PickupB{4}'
-expt_name = f'{user}_FE_2022_pickup_ITN_calibration_3_50'
+expt_name = f'{user}_FE_2022_Calibration_zone2_50'
 output_dir = os.path.join('simulation_outputs')
 input_dir = os.path.join('input')
 data_dir = os.path.join('data')
@@ -20,7 +20,7 @@ sim_pfpr_df.columns = [col.replace(' U5', '') for col in sim_pfpr_df.columns]
 sim_pfpr_df['npos'] = sim_pfpr_df['PfPR'] * sim_pfpr_df['Pop']
 sim_pfpr_df['npos'] = sim_pfpr_df.npos.round(0)
 #Command to pick the data from a DHS report
-dhs_pfpr_df = pd.read_csv(os.path.join(data_dir, 'PfPr_DHS_Ghana_Zone_1.csv'))
+dhs_pfpr_df = pd.read_csv(os.path.join(data_dir, 'PfPr_DHS_Ghana_Zone_2.csv'))
 #dhs_pfpr_df = pd.read_csv(os.path.join(data_dir, 'w7_fake_DHS_Ghana.csv'))
 sweep_variables = ['x_Temporary_Larval_Habitat', 'Run_Number']
 
@@ -63,7 +63,7 @@ def plot_output(sim_df, data_df, score_df, variable):
     axes[0].scatter(data_df['date'].values, data_df['PfPR'], data_df['DHS_n'], 'k')
     # axes[0].scatter(data_df['year'].values, data_df['PfPR'], data_df['DHS_n'], 'k')
     axes[0].set_ylabel('PfPR')
-    axes[0].set_title('Observed vs Simulated (Dark red is the best fit)')
+    axes[0].set_title('Observed vs Simulated (Dark red is the best fit)-Forest Zone')
 
     score_df1 = score_df[score_df.ll == score_df.ll.max()]
     axes[1].plot(score_df[variable], score_df['ll'], '-o', color='#FF0000', markersize=5)
@@ -72,7 +72,7 @@ def plot_output(sim_df, data_df, score_df, variable):
     axes[1].set_xlabel('Temporary Larval Habitat Multiplier')
     axes[1].set_title('Mean log-likelihood. Larger value = better fit')
 
-    fig.savefig(os.path.join(output_dir, expt_name, 'Savannah.png'))
+    fig.savefig(os.path.join(output_dir, expt_name, 'Forest.png'))
 
 
 if __name__ == "__main__":
