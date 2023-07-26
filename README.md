@@ -1,2 +1,2 @@
-# faculty-enrich-2022-Project_ITN
- Project for faculty enrichment 
+# IMPACT OF ITN, IRS AND SMC INTERVENTIONS IN GHANA
+ Project for faculty enrichment 2022-Chicago 
